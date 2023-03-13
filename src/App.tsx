@@ -1,10 +1,10 @@
 import type { Component } from "solid-js";
-import AppLayout from "./weather/layout/AppLayout";
+import { AppRouter } from "./weather/router/AppRouter";
 
 const App: Component = () => {
   return (
     <>
-      <AppLayout />
+      <AppRouter />
     </>
   );
 };

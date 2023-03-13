@@ -1,4 +1,5 @@
-import { Component, For } from "solid-js";
+import { Component, createMemo, For } from "solid-js";
+import { A } from "@solidjs/router";
 
 import { NavbarIcon } from "./NavbarIcon";
 import umbrella from "../../assets/umbrella.svg";
@@ -6,23 +7,27 @@ import sunCloudy from "../../assets/sun-cloudy.svg";
 import menu from "../../assets/menu.svg";
 import settings from "../../assets/settings.svg";
 
-export interface Options {
+interface Options {
   icon: string;
   text: string;
+  path: string;
 }
 
 const navbarOptions: Options[] = [
   {
     icon: sunCloudy,
     text: "Weather",
+    path: "/weather",
   },
   {
     icon: menu,
     text: "Cities",
+    path: "/cities",
   },
   {
     icon: settings,
     text: "Settings",
+    path: "/settings",
   },
 ];
 
@@ -37,7 +42,9 @@ export const Navbar: Component = () => {
         <div class="mt-12 flex flex-col items-center justify-center gap-4">
           <For each={navbarOptions}>
             {(opt) => (
-              <NavbarIcon ref={opt.text} icon={opt.icon} text={opt.text} />
+              <A href={opt.path} class="w-full">
+                <NavbarIcon icon={opt.icon} text={opt.text} ref={opt.text} />
+              </A>
             )}
           </For>
         </div>

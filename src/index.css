@@ -7,3 +7,14 @@
     @apply min-h-screen bg-slate-900 text-white;
   }
 }
+
+.active img,
+.active figcaption {
+  transition: filter ease 300ms;
+  filter: brightness(200%);
+}
+
+.inactive img,
+.inactive figcaption {
+  filter: brightness(70%);
+}
