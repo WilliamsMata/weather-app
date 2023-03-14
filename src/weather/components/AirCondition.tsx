@@ -44,7 +44,7 @@ export const AirCondition: Component<Props> = (props) => {
     <article class={props.class}>
       <p class="text-xs font-bold text-slate-400">AIR CONDITIONS</p>
 
-      <div class="flex h-full flex-wrap items-center justify-center">
+      <div class="flex h-full flex-wrap items-center justify-center sm:mx-4">
         <For each={airConditionData}>
           {(data) => (
             <AirConditionItem

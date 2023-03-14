@@ -3,6 +3,7 @@ import { TodayForecastItem } from "./TodayForecastItem";
 
 interface Props {
   class?: string;
+  days: number;
 }
 
 interface TodayData {
@@ -49,7 +50,7 @@ export const TodayForecast: Component<Props> = (props) => {
     <article class={props.class}>
       <p class="text-xs font-bold text-slate-400">TODAY'S FORECAST</p>
       <div class="flex h-full justify-evenly gap-2 py-6">
-        <For each={todayData}>
+        <For each={todayData.slice(0, props.days)}>
           {(data) => (
             <TodayForecastItem
               ref={data.hour}
