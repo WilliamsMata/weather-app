@@ -1,8 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  html::-webkit-scrollbar {
+    width: 6px; /* Ancho personalizado */
+  }
+
+  html::-webkit-scrollbar-track {
+    background-color: #0f172a; /* Color personalizado */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color personalizado */
+  }
+
+  html {
+    font-family: "Roboto", sans-serif;
+    scrollbar-width: thin;
+  }
+
   body {
     @apply min-h-screen bg-slate-900 text-white;
   }

@@ -18,7 +18,7 @@ export const SearchCity: Component = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} class="md:col-span-8 md:px-0">
       <input
         type="search"
         name="city"
