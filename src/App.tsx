@@ -1,5 +1,5 @@
 import type { Component } from "solid-js";
-import { AppRouter } from "./weather/router/AppRouter";
+import { AppRouter } from "./router/AppRouter";
 
 const App: Component = () => {
   return (

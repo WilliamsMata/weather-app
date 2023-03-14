@@ -1,4 +1,5 @@
 import { Component } from "solid-js";
+
 interface Props {
   icon: string;
   text: string;

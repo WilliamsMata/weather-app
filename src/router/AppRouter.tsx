@@ -1,8 +1,8 @@
-import { Component, lazy } from "solid-js";
+import { Component } from "solid-js";
 import { Routes, Route, Navigate } from "@solidjs/router";
 
-import AppLayout from "../layout/AppLayout";
-import { CitiesView, SettingsView, WeatherView } from "../views";
+import AppLayout from "../weather/layout/AppLayout";
+import { CitiesView, SettingsView, WeatherView } from "../weather/views";
 
 export const AppRouter: Component = () => {
   return (

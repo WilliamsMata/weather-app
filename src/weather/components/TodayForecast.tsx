@@ -46,7 +46,7 @@ const todayData: TodayData[] = [
 
 export const TodayForecast: Component<Props> = (props) => {
   return (
-    <div class={props.class}>
+    <article class={props.class}>
       <p class="text-xs font-bold text-slate-400">TODAY'S FORECAST</p>
       <div class="flex h-full justify-evenly gap-2 py-6">
         <For each={todayData}>
@@ -60,6 +60,6 @@ export const TodayForecast: Component<Props> = (props) => {
           )}
         </For>
       </div>
-    </div>
+    </article>
   );
 };
