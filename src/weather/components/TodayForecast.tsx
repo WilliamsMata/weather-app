@@ -49,7 +49,7 @@ export const TodayForecast: Component<Props> = (props) => {
   return (
     <article class={props.class}>
       <p class="text-xs font-bold text-slate-400">TODAY'S FORECAST</p>
-      <div class="flex h-full justify-evenly gap-2 py-6">
+      <div class="flex h-full justify-evenly gap-2 py-4">
         <For each={todayData.slice(0, props.days)}>
           {(data) => (
             <TodayForecastItem

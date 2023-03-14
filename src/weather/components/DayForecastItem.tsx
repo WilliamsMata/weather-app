@@ -5,7 +5,7 @@ import { GetWeatherIcon } from "./GetWeatherIcon";
 
 export const DayForecastItem: Component<DayForecastData> = (props) => {
   return (
-    <div class="mx-4 flex items-center justify-between sm:mx-8 md:mx-0 md:text-sm lg:mx-4 lg:text-base xl:mx-8">
+    <div class="mx-4 my-4 flex items-center justify-between sm:mx-8 md:mx-0 md:text-sm lg:mx-4 lg:text-base xl:mx-8">
       <p class="w-12 text-slate-400">{props.day}</p>
       <div class="flex w-36 items-center gap-4">
         <GetWeatherIcon weatherCode={props.weatherCode} width={2} height={2} />

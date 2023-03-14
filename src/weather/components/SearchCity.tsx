@@ -1,7 +1,9 @@
+import { useLocation } from "@solidjs/router";
 import { Component, createSignal } from "solid-js";
 
 export const SearchCity: Component = () => {
   const [inputSearch, setInputSearch] = createSignal<string>("");
+  const location = useLocation();
 
   const handleSubmit = (
     e: Event & {
@@ -18,7 +20,14 @@ export const SearchCity: Component = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} class="md:col-span-8 md:px-0">
+    <form
+      onSubmit={handleSubmit}
+      class={`md:px-0 ${
+        location.pathname === "/cities"
+          ? "md:col-span-6 lg:col-span-8"
+          : "md:col-span-8"
+      }`}
+    >
       <input
         type="search"
         name="city"
