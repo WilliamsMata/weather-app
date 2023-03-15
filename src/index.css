@@ -37,3 +37,98 @@
 .inactive figcaption {
   filter: brightness(70%);
 }
+
+/* TABS */
+
+.tabs-menu {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  padding-block: 0.5rem;
+  padding-inline: 0.25rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  height: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0f172a;
+  text-align: center;
+}
+
+.tabs-menu input[type="radio"] {
+  display: none;
+}
+
+.tabs-menu label {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  cursor: pointer;
+}
+
+.tabs-menu input[type="radio"]:not(:checked) + label {
+  color: #94a3b8;
+}
+
+.tab-bg {
+  position: absolute;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  background-color: #334155;
+  transition: transform 300ms ease-in-out;
+}
+
+/* Temperature TABS */
+.tabs-menu__temperature label {
+  width: calc(100% / 2 - 0.25rem);
+}
+
+.tab-bg__temperature {
+  width: calc(100% / 2 - 0.25rem);
+}
+
+#temperature-1:checked ~ .tab-bg {
+  transform: translateX(0);
+}
+#temperature-2:checked ~ .tab-bg {
+  transform: translateX(100%);
+}
+
+/* Wind Speed TABS */
+.tabs-menu__wind label {
+  width: calc(100% / 4 - 0.25rem);
+}
+
+.tab-bg__wind {
+  width: calc(100% / 4 - 0.115rem);
+}
+
+#wind-1:checked ~ .tab-bg {
+  transform: translateX(0);
+}
+#wind-2:checked ~ .tab-bg {
+  transform: translateX(100%);
+}
+#wind-3:checked ~ .tab-bg {
+  transform: translateX(200%);
+}
+#wind-4:checked ~ .tab-bg {
+  transform: translateX(300%);
+}
+
+/* Precipitation TABS */
+.tabs-menu__precipitation label {
+  width: calc(100% / 2 - 0.25rem);
+}
+
+.tab-bg__precipitation {
+  width: calc(100% / 2 - 0.25rem);
+}
+
+#precipitation-1:checked ~ .tab-bg {
+  transform: translateX(0);
+}
+#precipitation-2:checked ~ .tab-bg {
+  transform: translateX(100%);
+}

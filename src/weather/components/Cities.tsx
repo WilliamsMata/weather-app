@@ -34,7 +34,7 @@ export const Cities: Component<Props> = (props) => {
 
   return (
     <section class={props.class}>
-      <div class="flex flex-col gap-4">
+      <div class="flex flex-col gap-2">
         <For each={citiesData}>
           {(data) => (
             <CitiesItem

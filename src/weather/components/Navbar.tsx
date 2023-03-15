@@ -33,8 +33,8 @@ const navbarOptions: Options[] = [
 
 export const Navbar: Component = () => {
   return (
-    <nav class="md:min-h-full md:w-24 md:pr-2">
-      <div class="flex h-full justify-between bg-slate-800 px-2 md:flex-col md:justify-start md:rounded-2xl">
+    <nav class="md:min-h-full md:w-24">
+      <div class="flex h-full justify-between bg-slate-800 md:flex-col md:justify-start md:rounded-2xl">
         <div class="flex items-center justify-center md:pt-4">
           <img src={umbrella} alt="umbrella" class="h-12 w-12" />
         </div>
@@ -42,7 +42,7 @@ export const Navbar: Component = () => {
         <div class="flex items-center justify-center md:mt-12 md:flex-col md:gap-4">
           <For each={navbarOptions}>
             {(opt) => (
-              <A href={opt.path} class="w-20">
+              <A href={opt.path} class="w-20 md:w-full">
                 <NavbarIcon icon={opt.icon} text={opt.text} ref={opt.text} />
               </A>
             )}
