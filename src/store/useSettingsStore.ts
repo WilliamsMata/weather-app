@@ -1,10 +1,5 @@
 import { createStore } from "solid-js/store";
-
-interface Settings {
-  temperature: string;
-  wind: string;
-  precipitation: string;
-}
+import { Settings } from "../interfaces/Settings";
 
 const initialValue = {
   temperature: "Celsius",

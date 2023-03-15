@@ -1,4 +1,4 @@
-import { Component, createSignal } from "solid-js";
+import { Component } from "solid-js";
 import { useSettingsStore } from "../../store/useSettingsStore";
 
 interface Props {
@@ -62,8 +62,8 @@ export const Settings: Component<Props> = (props) => {
           type="radio"
           name="wind"
           id="wind-1"
-          value="Knots"
-          checked={settings.wind === "Knots"}
+          value="kn"
+          checked={settings.wind === "kn"}
           onInput={(e) => handleChange(e)}
         />
         <label for="wind-1">Knots</label>
