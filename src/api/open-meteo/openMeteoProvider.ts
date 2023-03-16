@@ -38,6 +38,7 @@ export const openMeteoProvider = ({ lat, lon, settings }: Props) => {
     () => ["open-meteo", { lat, lon, settings }],
     () => getOpenMeteoApi({ lat, lon, settings }),
     {
+      staleTime: 1000 * 60 * 60,
       get enabled() {
         return location.isOk;
       },

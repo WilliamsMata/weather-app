@@ -35,8 +35,8 @@ export const Navbar: Component = () => {
   return (
     <nav class="md:min-h-full md:w-24">
       <div class="flex h-full justify-between bg-slate-800 md:flex-col md:justify-start md:rounded-2xl">
-        <div class="flex items-center justify-center md:pt-4">
-          <img src={umbrella} alt="umbrella" class="h-12 w-12" />
+        <div class="flex items-center justify-center pl-2 md:pt-4 md:pl-0">
+          <img src={umbrella} alt="umbrella" class="h-16 w-16" />
         </div>
 
         <div class="flex items-center justify-center md:mt-12 md:flex-col md:gap-4">

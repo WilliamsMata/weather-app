@@ -17,6 +17,12 @@
     background-color: #888; /* Color personalizado */
   }
 
+  /* Fix colors on mobile when touch */
+  *:active {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+  }
+
   html {
     font-family: "Roboto", sans-serif;
     scrollbar-width: thin;
