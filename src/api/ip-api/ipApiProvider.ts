@@ -6,9 +6,19 @@ import { IPWho, JSONIP } from "../../interfaces/IpApi";
 import { ipWhoApi } from "./ipWhoApi";
 
 const getJsonIpApi = async (): Promise<JSONIP> => {
-  const { data } = await jsonIpApi.get("");
-  console.log(data);
-  return data;
+  try {
+    const { data } = await jsonIpApi.get("");
+    console.log(data);
+    return data;
+  } catch (error) {
+    // default ip when error
+    return {
+      ip: "8.8.8.8",
+      country: "string",
+      "geo-ip": "string",
+      "API Help": "string",
+    };
+  }
 };
 
 const getIpWhoApi = async (ip: string): Promise<IPWho> => {

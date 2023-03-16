@@ -34,13 +34,13 @@ export const TodayWeather: Component<Props> = (props) => {
           <div class="flex h-full flex-col justify-between">
             <div>
               <h1
-                class={`text-5xl font-bold ${
+                class={`text-4xl font-bold ${
                   props.bigFont ? "" : "md:text-3xl"
                 }`}
               >
                 {location.city}
               </h1>
-              <p class="mt-2 text-xs text-slate-400 md:text-sm">
+              <p class="my-2 text-xs text-slate-400 md:text-sm">
                 Chance of rain:{" "}
                 {openMeteoQuery.data?.hourly.precipitation_probability[hour]}%
               </p>
