@@ -1,4 +1,6 @@
 import { createStore } from "solid-js/store";
+import { openMeteoProvider } from "../api/open-meteo/openMeteoProvider";
+import { useSettingsStore } from "./useSettingsStore";
 
 interface LocationStore {
   isOk: boolean;

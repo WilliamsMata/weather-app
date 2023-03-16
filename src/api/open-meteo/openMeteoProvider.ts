@@ -29,7 +29,7 @@ const getOpenMeteoApi = async ({
       timezone: "America/New_York",
     },
   });
-  console.log(data);
+  //console.log(data);
   return data;
 };
 
