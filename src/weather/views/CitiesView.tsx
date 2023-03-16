@@ -12,9 +12,10 @@ export const CitiesView: Component = () => {
 
         <div class="col-span-12 h-full md:col-span-6 md:col-start-7 lg:col-span-4 lg:col-start-9">
           <TodayWeather
-            class="mt-4 flex items-center justify-between border-b-2 border-b-slate-700 px-4 pb-4 md:mt-0"
-            heightIcon={8}
-            widthIcon={8}
+            class="mt-4 flex h-40 items-center justify-between border-b-2 border-b-slate-700 px-4 pb-4 md:mt-0"
+            heightIcon={6}
+            widthIcon={6}
+            bigFont={false}
           />
 
           <TodayForecast days={3} class={"border-b-2 border-b-slate-700 p-4"} />

@@ -1,10 +1,9 @@
 import { createStore } from "solid-js/store";
 import { Settings } from "../interfaces/Settings";
 
-const initialValue = {
+const initialValue: Settings = {
   temperature: "Celsius",
-  wind: "Knots",
-  precipitation: "Millimeters",
+  wind: "kn",
 };
 
 export const useSettingsStore = () => {

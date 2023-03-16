@@ -26,7 +26,6 @@ export const Settings: Component<Props> = (props) => {
       JSON.stringify({
         temperature: settings.temperature,
         wind: settings.wind,
-        precipitation: settings.precipitation,
       })
     );
   };
@@ -71,8 +70,8 @@ export const Settings: Component<Props> = (props) => {
           type="radio"
           name="wind"
           id="wind-2"
-          value="m/s"
-          checked={settings.wind === "m/s"}
+          value="ms"
+          checked={settings.wind === "ms"}
           onInput={(e) => handleChange(e)}
         />
         <label for="wind-2">m/s</label>
@@ -80,8 +79,8 @@ export const Settings: Component<Props> = (props) => {
           type="radio"
           name="wind"
           id="wind-3"
-          value="Mph"
-          checked={settings.wind === "Mph"}
+          value="mph"
+          checked={settings.wind === "mph"}
           onInput={(e) => handleChange(e)}
         />
         <label for="wind-3">Mph</label>
@@ -89,35 +88,12 @@ export const Settings: Component<Props> = (props) => {
           type="radio"
           name="wind"
           id="wind-4"
-          value="Km/s"
-          checked={settings.wind === "Km/s"}
+          value="kmh"
+          checked={settings.wind === "kmh"}
           onInput={(e) => handleChange(e)}
         />
         <label for="wind-4">Km/h</label>
         <div class="tab-bg tab-bg__wind"></div>
-      </div>
-
-      <h2 class="text-sm font-bold text-slate-400">PRECIPITATION</h2>
-      <div class="tabs-menu tabs-menu__precipitation">
-        <input
-          type="radio"
-          name="precipitation"
-          id="precipitation-1"
-          value="Millimeters"
-          checked={settings.precipitation === "Millimeters"}
-          onInput={(e) => handleChange(e)}
-        />
-        <label for="precipitation-1">Millimeters</label>
-        <input
-          type="radio"
-          name="precipitation"
-          id="precipitation-2"
-          value="Inch"
-          checked={settings.precipitation === "Inch"}
-          onInput={(e) => handleChange(e)}
-        />
-        <label for="precipitation-2">Inch</label>
-        <div class="tab-bg tab-bg__precipitation"></div>
       </div>
     </div>
   );

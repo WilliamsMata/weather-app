@@ -1,5 +1,17 @@
-import { Component, For } from "solid-js";
+import {
+  Component,
+  For,
+  createSignal,
+  createEffect,
+  Switch,
+  Match,
+} from "solid-js";
 import { DayForecastItem } from "./DayForecastItem";
+import { openMeteoProvider } from "../../api/open-meteo/openMeteoProvider";
+import { useLocationStore } from "../../store/useLocationStore";
+import { useSettingsStore } from "../../store/useSettingsStore";
+import { LoadingSpiner } from "./LoadingSpiner";
+import { getNextDays } from "../../helpers/getNextDays";
 
 interface Props {
   class: string;
@@ -13,68 +25,125 @@ export interface DayForecastData {
   minTemperature: number;
 }
 
-const dayForecastData: DayForecastData[] = [
-  {
-    day: "Today",
-    weatherCode: 0,
-    maxTemperature: 36,
-    minTemperature: 22,
-  },
-  {
-    day: "Tue",
-    weatherCode: 1,
-    maxTemperature: 37,
-    minTemperature: 21,
-  },
-  {
-    day: "Wed",
-    weatherCode: 2,
-    maxTemperature: 37,
-    minTemperature: 21,
-  },
-  {
-    day: "Thu",
-    weatherCode: 3,
-    maxTemperature: 37,
-    minTemperature: 22,
-  },
-  {
-    day: "Fri",
-    weatherCode: 51,
-    maxTemperature: 37,
-    minTemperature: 21,
-  },
-  {
-    day: "Sat",
-    weatherCode: 61,
-    maxTemperature: 35,
-    minTemperature: 23,
-  },
-  {
-    day: "Sun",
-    weatherCode: 65,
-    maxTemperature: 36,
-    minTemperature: 22,
-  },
-];
-
 export const DayForecast: Component<Props> = (props) => {
+  const { settings } = useSettingsStore();
+  const { location } = useLocationStore();
+
+  const openMeteoQuery = openMeteoProvider({
+    lat: location.lat,
+    lon: location.lon,
+    settings,
+  });
+
+  const [dayForecastData, setDayForecastData] = createSignal<DayForecastData[]>(
+    []
+  );
+
+  const nextDays = getNextDays();
+
+  createEffect(() => {
+    if (openMeteoQuery.isSuccess) {
+      setDayForecastData([
+        {
+          day: "Today",
+          weatherCode: openMeteoQuery.data.daily.weathercode[0],
+          maxTemperature: Math.floor(
+            openMeteoQuery.data.daily.temperature_2m_max[0]
+          ),
+          minTemperature: Math.floor(
+            openMeteoQuery.data.daily.temperature_2m_min[0]
+          ),
+        },
+        {
+          day: nextDays[1],
+          weatherCode: openMeteoQuery.data.daily.weathercode[1],
+          maxTemperature: Math.floor(
+            openMeteoQuery.data.daily.temperature_2m_max[1]
+          ),
+          minTemperature: Math.floor(
+            openMeteoQuery.data.daily.temperature_2m_min[1]
+          ),
+        },
+        {
+          day: nextDays[2],
+          weatherCode: openMeteoQuery.data.daily.weathercode[2],
+          maxTemperature: Math.floor(
+            openMeteoQuery.data.daily.temperature_2m_max[2]
+          ),
+          minTemperature: Math.floor(
+            openMeteoQuery.data.daily.temperature_2m_min[2]
+          ),
+        },
+        {
+          day: nextDays[3],
+          weatherCode: openMeteoQuery.data.daily.weathercode[3],
+          maxTemperature: Math.floor(
+            openMeteoQuery.data.daily.temperature_2m_max[3]
+          ),
+          minTemperature: Math.floor(
+            openMeteoQuery.data.daily.temperature_2m_min[3]
+          ),
+        },
+        {
+          day: nextDays[4],
+          weatherCode: openMeteoQuery.data.daily.weathercode[4],
+          maxTemperature: Math.floor(
+            openMeteoQuery.data.daily.temperature_2m_max[4]
+          ),
+          minTemperature: Math.floor(
+            openMeteoQuery.data.daily.temperature_2m_min[4]
+          ),
+        },
+        {
+          day: nextDays[5],
+          weatherCode: openMeteoQuery.data.daily.weathercode[5],
+          maxTemperature: Math.floor(
+            openMeteoQuery.data.daily.temperature_2m_max[5]
+          ),
+          minTemperature: Math.floor(
+            openMeteoQuery.data.daily.temperature_2m_min[5]
+          ),
+        },
+        {
+          day: nextDays[6],
+          weatherCode: openMeteoQuery.data.daily.weathercode[6],
+          maxTemperature: Math.floor(
+            openMeteoQuery.data.daily.temperature_2m_max[6]
+          ),
+          minTemperature: Math.floor(
+            openMeteoQuery.data.daily.temperature_2m_min[6]
+          ),
+        },
+      ]);
+    }
+  });
+
   return (
     <article class={props.class}>
-      <p class="text-xs font-bold text-slate-400">{props.days}-DAY FORECAST</p>
-      <div class="flex h-full flex-col justify-around">
-        <For each={dayForecastData.slice(0, props.days)}>
-          {(data) => (
-            <DayForecastItem
-              ref={data.day}
-              day={data.day}
-              weatherCode={data.weatherCode}
-              minTemperature={data.minTemperature}
-              maxTemperature={data.maxTemperature}
-            />
-          )}
-        </For>
-      </div>
+      <Switch>
+        <Match when={openMeteoQuery.isLoading}>
+          <LoadingSpiner />
+        </Match>
+
+        <Match when={openMeteoQuery.isSuccess}>
+          <p class="text-xs font-bold text-slate-400">
+            {props.days}-DAY FORECAST
+          </p>
+          <div class="flex h-full flex-col justify-around">
+            <For each={dayForecastData().slice(0, props.days)}>
+              {(data) => (
+                <DayForecastItem
+                  ref={data.day}
+                  day={data.day}
+                  weatherCode={data.weatherCode}
+                  minTemperature={data.minTemperature}
+                  maxTemperature={data.maxTemperature}
+                />
+              )}
+            </For>
+          </div>
+        </Match>
+      </Switch>
     </article>
   );
 };

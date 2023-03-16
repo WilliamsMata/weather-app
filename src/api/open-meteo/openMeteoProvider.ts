@@ -23,7 +23,6 @@ const getOpenMeteoApi = async ({
       longitude: lon,
       temperature_unit: settings.temperature.toLowerCase(),
       windspeed_unit: settings.wind,
-      precipitation_unit: settings.precipitation.toLowerCase(),
       hourly:
         "temperature_2m,apparent_temperature,precipitation_probability,weathercode,pressure_msl,windspeed_10m",
       daily: "weathercode,temperature_2m_max,temperature_2m_min",
