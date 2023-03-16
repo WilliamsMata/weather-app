@@ -14,17 +14,17 @@ const App: Component = () => {
   });
 
   /* DETECT IP */
-  const { ipApiQuery } = ipApiProvider();
+  const { ipWhoApiQuery } = ipApiProvider();
 
   return (
     <Switch>
-      <Match when={ipApiQuery.isLoading}>
+      <Match when={ipWhoApiQuery.isLoading}>
         <div class="flex min-h-screen items-center justify-center">
           <span class="loader" />
         </div>
       </Match>
 
-      <Match when={ipApiQuery.isSuccess}>
+      <Match when={ipWhoApiQuery.isSuccess}>
         <AppRouter />
       </Match>
     </Switch>

@@ -1,18 +1,18 @@
 import { createQuery } from "@tanstack/solid-query";
 import { createSignal } from "solid-js";
-import { IpApi, Ipify } from "../../interfaces/IpApi";
 import { useLocationStore } from "../../store/useLocationStore";
-import { ipApi } from "./ipApi";
-import { ipifyApi } from "./ipifyApi";
+import { jsonIpApi } from "./jsonIpApi";
+import { IPWho, JSONIP } from "../../interfaces/IpApi";
+import { ipWhoApi } from "./ipWhoApi";
 
-const getIpifyApi = async (): Promise<Ipify> => {
-  const { data } = await ipifyApi.get("");
+const getJsonIpApi = async (): Promise<JSONIP> => {
+  const { data } = await jsonIpApi.get("");
   console.log(data);
   return data;
 };
 
-const getIpApi = async (ip: string): Promise<IpApi> => {
-  const { data } = await ipApi.get(`/${ip}`);
+const getIpWhoApi = async (ip: string): Promise<IPWho> => {
+  const { data } = await ipWhoApi.get(`/${ip}`);
   console.log(data);
   return data;
 };
@@ -21,14 +21,14 @@ export const ipApiProvider = () => {
   const [enabled, setEnabled] = createSignal<boolean>(false);
   const { setLocation } = useLocationStore();
 
-  const ipifyApiQuery = createQuery(() => ["ipify"], getIpifyApi, {
+  const jsonIpApiQuery = createQuery(() => ["jsonIp"], getJsonIpApi, {
     staleTime: 1000 * 60 * 60,
     onSuccess: () => setEnabled(true),
   });
 
-  const ipApiQuery = createQuery(
+  const ipWhoApiQuery = createQuery(
     () => ["ip"],
-    () => getIpApi(ipifyApiQuery.data!.ip),
+    () => getIpWhoApi(jsonIpApiQuery.data!.ip),
     {
       staleTime: 1000 * 60 * 60,
       get enabled() {
@@ -37,13 +37,13 @@ export const ipApiProvider = () => {
       onSuccess: (data) => {
         setLocation({
           isOk: true,
-          lat: data?.lat,
-          lon: data?.lon,
+          lat: data?.latitude,
+          lon: data?.longitude,
           city: data.city,
         });
       },
     }
   );
 
-  return { ipifyApiQuery, ipApiQuery };
+  return { jsonIpApiQuery, ipWhoApiQuery };
 };
