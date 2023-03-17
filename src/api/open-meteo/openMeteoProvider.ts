@@ -1,10 +1,9 @@
 import { createQuery } from "@tanstack/solid-query";
 import { OpenMeteo } from "../../interfaces/OpenMeteo";
 import { openMeteoApi } from "./openMeteoApi";
-import { useLocationStore } from "../../store/useLocationStore";
 import { Settings } from "../../interfaces/Settings";
-
-const { location } = useLocationStore();
+import { useContext } from "solid-js";
+import { AppContext } from "../../context/AppContext";
 
 interface Props {
   lat: number;
@@ -33,14 +32,28 @@ const getOpenMeteoApi = async ({
   return data;
 };
 
-export const openMeteoProvider = ({ lat, lon, settings }: Props) => {
+export const openMeteoProvider = () => {
+  const [state] = useContext(AppContext);
+
   const openMeteoQuery = createQuery(
-    () => ["open-meteo", { lat, lon, settings }],
-    () => getOpenMeteoApi({ lat, lon, settings }),
+    () => [
+      "open-meteo",
+      {
+        lat: state.location.lat,
+        lon: state.location.lon,
+        settings: state.settings,
+      },
+    ],
+    () =>
+      getOpenMeteoApi({
+        lat: state.location.lat,
+        lon: state.location.lon,
+        settings: state.settings,
+      }),
     {
       staleTime: 1000 * 60 * 60,
       get enabled() {
-        return location.isOk;
+        return state.location.isOk;
       },
     }
   );

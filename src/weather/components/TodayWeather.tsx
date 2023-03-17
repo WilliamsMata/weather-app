@@ -1,9 +1,10 @@
-import { Component, Match, Switch } from "solid-js";
+import { Component, Match, Switch, useContext } from "solid-js";
 import { GetWeatherIcon } from "./GetWeatherIcon";
 import { useSettingsStore } from "../../store/useSettingsStore";
 import { useLocationStore } from "../../store/useLocationStore";
 import { openMeteoProvider } from "../../api/open-meteo/openMeteoProvider";
 import { LoadingSpiner } from "./LoadingSpiner";
+import { AppContext } from "../../context/AppContext";
 interface Props {
   class?: string;
   heightIcon: number;
@@ -12,14 +13,9 @@ interface Props {
 }
 
 export const TodayWeather: Component<Props> = (props) => {
-  const { settings } = useSettingsStore();
-  const { location } = useLocationStore();
+  const [state] = useContext(AppContext);
 
-  const openMeteoQuery = openMeteoProvider({
-    lat: location.lat,
-    lon: location.lon,
-    settings,
-  });
+  const openMeteoQuery = openMeteoProvider();
 
   const hour = new Date().getHours();
 
@@ -38,7 +34,7 @@ export const TodayWeather: Component<Props> = (props) => {
                   props.bigFont ? "" : "md:text-3xl"
                 }`}
               >
-                {location.city}
+                {state.location.city}
               </h1>
               <p class="my-2 text-xs text-slate-400 md:text-sm">
                 Chance of rain:{" "}

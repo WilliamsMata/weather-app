@@ -1,37 +1,27 @@
 import { useLocation } from "@solidjs/router";
-import { Component, createEffect, For, Match, Switch } from "solid-js";
-import { debounce } from "lodash";
-import { getMapboxApi } from "../../api/mapbox/mapboxProvider";
-import { useSearchStore } from "../../store/useSearchStore";
-import { createQuery } from "@tanstack/solid-query";
+import {
+  Component,
+  createEffect,
+  For,
+  Match,
+  Switch,
+  useContext,
+} from "solid-js";
+import { mapboxProvider } from "../../api/mapbox/mapboxProvider";
 import { LoadingSpiner } from "./LoadingSpiner";
 import { Feature } from "../../interfaces/Mapbox";
-import { useLocationStore } from "../../store/useLocationStore";
-import { useSettingsStore } from "../../store/useSettingsStore";
-import { openMeteoProvider } from "../../api/open-meteo/openMeteoProvider";
+import { AppContext } from "../../context/AppContext";
+import { debounce } from "@solid-primitives/scheduled";
 
 export const SearchCity: Component = () => {
   const location = useLocation();
+  const [state, { setSearch, setLocation }] = useContext(AppContext);
 
-  const { searchStore, setSearchStore } = useSearchStore();
+  const mapboxQuery = mapboxProvider();
 
-  const mapboxQuery = createQuery(
-    () => ["mapbox", searchStore.search],
-    () => getMapboxApi(searchStore.search),
-    {
-      staleTime: 1000 * 60 * 60,
-    }
-  );
-
-  const delayedSearch = debounce((value) => {
-    setSearchStore({ search: value });
+  const delayedSearch = debounce((value: string) => {
+    setSearch(value);
   }, 500);
-
-  createEffect(() => {
-    if (mapboxQuery.isSuccess) {
-      console.log(mapboxQuery.data);
-    }
-  });
 
   const handleInputChange = (
     e: InputEvent & {
@@ -42,29 +32,17 @@ export const SearchCity: Component = () => {
     delayedSearch(e.currentTarget.value);
   };
 
-  const { location: locationStore, setLocation } = useLocationStore();
-  const { settings } = useSettingsStore();
-
-  createEffect(() => {
-    openMeteoProvider({
-      lat: locationStore.lat,
-      lon: locationStore.lon,
-      settings,
-    });
-  });
-
   const handleCityClick = (data: Feature) => {
-    setLocation((location) => {
-      return {
-        ...location,
-        lat: data.center[1],
-        lon: data.center[0],
-        city: data.text,
-      };
+    setLocation({
+      ...state.location,
+      lat: data.center[1],
+      lon: data.center[0],
+      city: data.text,
     });
 
-    setSearchStore({ search: "" });
+    setSearch("");
   };
+
   return (
     <form
       onSubmit={(e) => e.preventDefault()}
@@ -77,7 +55,7 @@ export const SearchCity: Component = () => {
       <input
         type="search"
         name="city"
-        value={searchStore.search}
+        value={state.search}
         oninput={handleInputChange}
         id="search-city"
         placeholder="Search for cities"
@@ -87,7 +65,7 @@ export const SearchCity: Component = () => {
 
       <div class="absolute top-full z-50 w-full rounded-b-lg bg-slate-700">
         <Switch>
-          <Match when={mapboxQuery.isLoading}>
+          <Match when={mapboxQuery.isFetching}>
             <div class="py-4">
               <LoadingSpiner />
             </div>

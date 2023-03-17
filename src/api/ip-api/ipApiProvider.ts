@@ -1,9 +1,9 @@
 import { createQuery } from "@tanstack/solid-query";
-import { createSignal } from "solid-js";
-import { useLocationStore } from "../../store/useLocationStore";
+import { createSignal, useContext } from "solid-js";
 import { jsonIpApi } from "./jsonIpApi";
 import { IPWho, JSONIP } from "../../interfaces/IpApi";
 import { ipWhoApi } from "./ipWhoApi";
+import { AppContext } from "../../context/AppContext";
 
 const getJsonIpApi = async (): Promise<JSONIP> => {
   try {
@@ -29,7 +29,7 @@ const getIpWhoApi = async (ip: string): Promise<IPWho> => {
 
 export const ipApiProvider = () => {
   const [enabled, setEnabled] = createSignal<boolean>(false);
-  const { setLocation } = useLocationStore();
+  const [store, { setLocation }] = useContext(AppContext);
 
   const jsonIpApiQuery = createQuery(() => ["jsonIp"], getJsonIpApi, {
     staleTime: 1000 * 60 * 60,

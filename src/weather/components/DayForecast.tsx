@@ -8,8 +8,6 @@ import {
 } from "solid-js";
 import { DayForecastItem } from "./DayForecastItem";
 import { openMeteoProvider } from "../../api/open-meteo/openMeteoProvider";
-import { useLocationStore } from "../../store/useLocationStore";
-import { useSettingsStore } from "../../store/useSettingsStore";
 import { LoadingSpiner } from "./LoadingSpiner";
 import { getNextDays } from "../../helpers/getNextDays";
 
@@ -26,14 +24,7 @@ export interface DayForecastData {
 }
 
 export const DayForecast: Component<Props> = (props) => {
-  const { settings } = useSettingsStore();
-  const { location } = useLocationStore();
-
-  const openMeteoQuery = openMeteoProvider({
-    lat: location.lat,
-    lon: location.lon,
-    settings,
-  });
+  const openMeteoQuery = openMeteoProvider();
 
   const [dayForecastData, setDayForecastData] = createSignal<DayForecastData[]>(
     []

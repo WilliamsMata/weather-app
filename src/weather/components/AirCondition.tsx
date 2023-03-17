@@ -13,9 +13,9 @@ import waterDropIcon from "../../assets/water-drop.svg";
 import pressureIcon from "../../assets/pressure.svg";
 import { AirConditionItem } from "./AirConditionItem";
 import { openMeteoProvider } from "../../api/open-meteo/openMeteoProvider";
-import { useLocationStore } from "../../store/useLocationStore";
-import { useSettingsStore } from "../../store/useSettingsStore";
 import { LoadingSpiner } from "./LoadingSpiner";
+import { useContext } from "solid-js";
+import { AppContext } from "../../context/AppContext";
 
 interface Props {
   class: string;
@@ -28,14 +28,9 @@ export interface AirConditionData {
 }
 
 export const AirCondition: Component<Props> = (props) => {
-  const { settings } = useSettingsStore();
-  const { location } = useLocationStore();
+  const [state] = useContext(AppContext);
 
-  const openMeteoQuery = openMeteoProvider({
-    lat: location.lat,
-    lon: location.lon,
-    settings,
-  });
+  const openMeteoQuery = openMeteoProvider();
 
   const hour = new Date().getHours();
 
@@ -54,7 +49,7 @@ export const AirCondition: Component<Props> = (props) => {
         {
           title: "Wind",
           icon: windIcon,
-          data: `${openMeteoQuery.data.hourly.windspeed_10m[hour]} ${settings.wind}`,
+          data: `${openMeteoQuery.data.hourly.windspeed_10m[hour]} ${state.settings.wind}`,
         },
         {
           title: "Chance of rain",

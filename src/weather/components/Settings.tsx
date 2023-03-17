@@ -1,12 +1,15 @@
-import { Component } from "solid-js";
-import { useSettingsStore } from "../../store/useSettingsStore";
+import { useQueryClient } from "@tanstack/solid-query";
+import { Component, useContext } from "solid-js";
+import { AppContext } from "../../context/AppContext";
 
 interface Props {
   class: string;
 }
 
 export const Settings: Component<Props> = (props) => {
-  const { settings, setSettings } = useSettingsStore();
+  const [state, { setSettings }] = useContext(AppContext);
+
+  const queryClient = useQueryClient();
 
   const handleChange = (
     e: InputEvent & {
@@ -14,20 +17,19 @@ export const Settings: Component<Props> = (props) => {
       target: Element;
     }
   ) => {
-    setSettings((settings) => {
-      return {
-        ...settings,
-        [e.currentTarget.name]: e.currentTarget.value,
-      };
+    setSettings({
+      ...state.settings,
+      [e.currentTarget.name]: e.currentTarget.value,
     });
 
-    localStorage.setItem(
-      "settings",
-      JSON.stringify({
-        temperature: settings.temperature,
-        wind: settings.wind,
-      })
-    );
+    queryClient.prefetchQuery([
+      "open-meteo",
+      {
+        lat: state.location.lat,
+        lon: state.location.lon,
+        settings: state.settings,
+      },
+    ]);
   };
 
   return (
@@ -39,7 +41,7 @@ export const Settings: Component<Props> = (props) => {
           name="temperature"
           id="temperature-1"
           value="Celsius"
-          checked={settings.temperature === "Celsius"}
+          checked={state.settings.temperature === "Celsius"}
           onInput={(e) => handleChange(e)}
         />
         <label for="temperature-1">Celsius</label>
@@ -48,7 +50,7 @@ export const Settings: Component<Props> = (props) => {
           name="temperature"
           id="temperature-2"
           value="Fahrenheit"
-          checked={settings.temperature === "Fahrenheit"}
+          checked={state.settings.temperature === "Fahrenheit"}
           onInput={(e) => handleChange(e)}
         />
         <label for="temperature-2">Fahrenheit</label>
@@ -62,7 +64,7 @@ export const Settings: Component<Props> = (props) => {
           name="wind"
           id="wind-1"
           value="kn"
-          checked={settings.wind === "kn"}
+          checked={state.settings.wind === "kn"}
           onInput={(e) => handleChange(e)}
         />
         <label for="wind-1">Knots</label>
@@ -71,7 +73,7 @@ export const Settings: Component<Props> = (props) => {
           name="wind"
           id="wind-2"
           value="ms"
-          checked={settings.wind === "ms"}
+          checked={state.settings.wind === "ms"}
           onInput={(e) => handleChange(e)}
         />
         <label for="wind-2">m/s</label>
@@ -80,7 +82,7 @@ export const Settings: Component<Props> = (props) => {
           name="wind"
           id="wind-3"
           value="mph"
-          checked={settings.wind === "mph"}
+          checked={state.settings.wind === "mph"}
           onInput={(e) => handleChange(e)}
         />
         <label for="wind-3">Mph</label>
@@ -89,7 +91,7 @@ export const Settings: Component<Props> = (props) => {
           name="wind"
           id="wind-4"
           value="kmh"
-          checked={settings.wind === "kmh"}
+          checked={state.settings.wind === "kmh"}
           onInput={(e) => handleChange(e)}
         />
         <label for="wind-4">Km/h</label>

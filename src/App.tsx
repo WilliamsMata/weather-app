@@ -1,10 +1,17 @@
-import { Component, createEffect, Match, onMount, Switch } from "solid-js";
+import {
+  Component,
+  createEffect,
+  Match,
+  onMount,
+  Switch,
+  useContext,
+} from "solid-js";
 import { AppRouter } from "./router/AppRouter";
-import { useSettingsStore } from "./store/useSettingsStore";
 import { ipApiProvider } from "./api/ip-api/ipApiProvider";
+import { AppContext } from "./context/AppContext";
 
 const App: Component = () => {
-  const { setSettings } = useSettingsStore();
+  const [state, { setSettings }] = useContext(AppContext);
 
   onMount(() => {
     /* SETTINGS */

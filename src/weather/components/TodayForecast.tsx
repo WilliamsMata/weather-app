@@ -8,8 +8,6 @@ import {
 } from "solid-js";
 import { TodayForecastItem } from "./TodayForecastItem";
 import { openMeteoProvider } from "../../api/open-meteo/openMeteoProvider";
-import { useLocationStore } from "../../store/useLocationStore";
-import { useSettingsStore } from "../../store/useSettingsStore";
 import { LoadingSpiner } from "./LoadingSpiner";
 
 interface Props {
@@ -24,14 +22,7 @@ interface TodayData {
 }
 
 export const TodayForecast: Component<Props> = (props) => {
-  const { settings } = useSettingsStore();
-  const { location } = useLocationStore();
-
-  const openMeteoQuery = openMeteoProvider({
-    lat: location.lat,
-    lon: location.lon,
-    settings,
-  });
+  const openMeteoQuery = openMeteoProvider();
 
   const [todayData, setTodayData] = createSignal<TodayData[]>([]);
 

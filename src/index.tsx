@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/solid-query";
 
 import "./index.css";
 import App from "./App";
+import { AppContextProvider } from "./context/AppContextProvider";
 
 const root = document.getElementById("root");
 
@@ -18,11 +19,13 @@ const queryClient = new QueryClient();
 
 render(
   () => (
-    <QueryClientProvider client={queryClient}>
-      <Router>
-        <App />
-      </Router>
-    </QueryClientProvider>
+    <AppContextProvider>
+      <QueryClientProvider client={queryClient}>
+        <Router>
+          <App />
+        </Router>
+      </QueryClientProvider>
+    </AppContextProvider>
   ),
   root!
 );
