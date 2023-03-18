@@ -49,6 +49,8 @@ export const SearchCity: Component = () => {
       class={`relative md:px-0 ${
         location.pathname === "/cities"
           ? "md:col-span-6 lg:col-span-8"
+          : location.pathname === "/map"
+          ? "md:col-span-7 lg:col-span-8"
           : "md:col-span-8"
       }`}
     >

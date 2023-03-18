@@ -1,49 +1,39 @@
-import { Component, For, createSignal } from "solid-js";
+import {
+  Component,
+  For,
+  createSignal,
+  useContext,
+  createEffect,
+} from "solid-js";
 import { CitiesItem } from "./";
+import { AppContext } from "../../context";
 
 interface Props {
   class: string;
 }
 
-export interface CitiesData {
-  weatherCode: number;
-  city: string;
-  temperature: number;
-}
-
-const citiesData: CitiesData[] = [
-  {
-    weatherCode: 0,
-    city: "Madrid",
-    temperature: 31,
-  },
-  {
-    weatherCode: 63,
-    city: "Vienna",
-    temperature: 27,
-  },
-  {
-    weatherCode: 65,
-    city: "Athens",
-    temperature: 33,
-  },
-];
-
 export const Cities: Component<Props> = (props) => {
-  const [activeCity, setActiveCity] = createSignal<string>(citiesData[0].city);
+  const [state] = useContext(AppContext);
+
+  const [activeCity, setActiveCity] = createSignal<string>(state.history[0].id);
+
+  createEffect(() => {
+    setActiveCity(state.location.id);
+  });
 
   return (
     <section class={props.class}>
       <div class="flex flex-col gap-2">
-        <For each={citiesData}>
+        <For each={state.history}>
           {(data) => (
             <CitiesItem
               ref={data.city}
+              id={data.id}
               city={data.city}
-              temperature={data.temperature}
-              weatherCode={data.weatherCode}
+              lat={data.lat}
+              lon={data.lon}
               activeCity={activeCity()}
-              onClick={(city) => setActiveCity(city)}
+              setActiveCity={setActiveCity}
             />
           )}
         </For>

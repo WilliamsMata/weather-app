@@ -29,7 +29,7 @@ const getIpWhoApi = async (ip: string): Promise<IPWho> => {
 
 export const ipApiProvider = () => {
   const [enabled, setEnabled] = createSignal<boolean>(false);
-  const [store, { setLocation }] = useContext(AppContext);
+  const [store, { setLocation, addCityToHistory }] = useContext(AppContext);
 
   const jsonIpApiQuery = createQuery(() => ["jsonIp"], getJsonIpApi, {
     staleTime: 1000 * 60 * 60,
@@ -52,6 +52,8 @@ export const ipApiProvider = () => {
           lon: data?.longitude,
           city: data.city,
         });
+
+        addCityToHistory();
       },
     }
   );
