@@ -1,5 +1,6 @@
 export interface Location {
-  isOk: boolean;
+  isOk?: boolean;
+  id: string;
   lat: number;
   lon: number;
   city: string;

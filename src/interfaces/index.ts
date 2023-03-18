@@ -1,3 +1,4 @@
+export * from "./History";
 export * from "./IpApi";
 export * from "./Location";
 export * from "./Mapbox";

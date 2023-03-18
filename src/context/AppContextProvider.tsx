@@ -14,11 +14,13 @@ const initialState: AppContextProps = {
   },
   location: {
     isOk: false,
+    id: "",
     lat: 0,
     lon: 0,
     city: "",
   },
   search: "",
+  history: [],
 };
 
 export const AppContextProvider: Component<Props> = (props) => {
@@ -43,6 +45,18 @@ export const AppContextProvider: Component<Props> = (props) => {
       },
       setSearch(payload) {
         setState("search", payload);
+      },
+      addCityToHistory() {
+        setState("history", (history) => {
+          const newHistory = history.filter(
+            (location) => location.id !== state.location.id
+          );
+
+          if (history.length > 4) {
+            return [{ ...state.location }, ...newHistory.slice(0, 4)];
+          }
+          return [{ ...state.location }, ...newHistory];
+        });
       },
     },
   ];

@@ -9,7 +9,8 @@ import { Feature } from "../../interfaces";
 
 export const SearchCity: Component = () => {
   const location = useLocation();
-  const [state, { setSearch, setLocation }] = useContext(AppContext);
+  const [state, { setSearch, setLocation, addCityToHistory }] =
+    useContext(AppContext);
 
   const mapboxQuery = mapboxProvider();
 
@@ -29,12 +30,17 @@ export const SearchCity: Component = () => {
   const handleCityClick = (data: Feature) => {
     setLocation({
       ...state.location,
+      id: data.id,
       lat: data.center[1],
       lon: data.center[0],
       city: data.text,
     });
 
+    addCityToHistory();
+
     setSearch("");
+
+    console.log(state.history);
   };
 
   return (

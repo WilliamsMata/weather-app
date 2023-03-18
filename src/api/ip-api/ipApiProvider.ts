@@ -47,6 +47,7 @@ export const ipApiProvider = () => {
       onSuccess: (data) => {
         setLocation({
           isOk: true,
+          id: "ip-location",
           lat: data?.latitude,
           lon: data?.longitude,
           city: data.city,
