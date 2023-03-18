@@ -10,6 +10,7 @@ export type AppContextProps = {
 
 export type AppContextMethods = {
   setSettings: (payload: Settings) => void;
+  toggle12HourTime: () => void;
   setLocation: (payload: Location) => void;
   setSearch: (payload: string) => void;
   addCityToHistory: () => void;

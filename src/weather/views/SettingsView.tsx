@@ -1,13 +1,19 @@
 import { Component } from "solid-js";
-import { Settings } from "../components";
+import { UnitsSettings } from "../components";
+import { GeneralSettings } from "../components/GeneralSettings";
 
 export const SettingsView: Component = () => {
   return (
     <>
-      <h1 class="text-2xl font-bold">Units</h1>
-
       <section class="grid grid-cols-12 gap-2">
-        <Settings class="col-span-12 flex flex-col gap-4 rounded-lg bg-slate-800 p-4 md:col-span-8" />
+        <div class="col-span-12 flex flex-col gap-2 md:col-span-8">
+          <h1 class="text-2xl font-bold">Units</h1>
+          <UnitsSettings class="flex flex-col gap-4 rounded-lg bg-slate-800 p-4 " />
+        </div>
+        <div class="col-span-12 flex flex-col gap-2 md:col-span-8">
+          <h1 class="text-2xl font-bold">Generals</h1>
+          <GeneralSettings class="flex flex-col gap-4 rounded-lg bg-slate-800 p-4 " />
+        </div>
       </section>
     </>
   );

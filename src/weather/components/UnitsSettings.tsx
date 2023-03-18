@@ -7,7 +7,7 @@ interface Props {
   class: string;
 }
 
-export const Settings: Component<Props> = (props) => {
+export const UnitsSettings: Component<Props> = (props) => {
   const [state, { setSettings }] = useContext(AppContext);
 
   const queryClient = useQueryClient();

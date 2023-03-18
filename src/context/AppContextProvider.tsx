@@ -11,6 +11,7 @@ const initialState: AppContextProps = {
   settings: {
     temperature: "Celsius",
     wind: "kn",
+    "12-hour-time": false,
   },
   location: {
     isOk: false,
@@ -37,6 +38,22 @@ export const AppContextProvider: Component<Props> = (props) => {
           JSON.stringify({
             temperature: state.settings.temperature,
             wind: state.settings.wind,
+            "12-hour-time": state.settings["12-hour-time"],
+          })
+        );
+      },
+      toggle12HourTime() {
+        setState("settings", {
+          ...state.settings,
+          "12-hour-time": !state.settings["12-hour-time"],
+        });
+
+        localStorage.setItem(
+          "settings",
+          JSON.stringify({
+            temperature: state.settings.temperature,
+            wind: state.settings.wind,
+            "12-hour-time": state.settings["12-hour-time"],
           })
         );
       },
