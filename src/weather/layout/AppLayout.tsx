@@ -1,7 +1,6 @@
 import { Component } from "solid-js";
 import { Outlet } from "@solidjs/router";
-import { Navbar } from "../components/Navbar";
-import { SearchCity } from "../components/SearchCity";
+import { Navbar, SearchCity } from "../components";
 
 const AppLayout: Component = () => {
   return (

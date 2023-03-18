@@ -1,6 +1,7 @@
 import { useQueryClient } from "@tanstack/solid-query";
 import { Component, useContext } from "solid-js";
-import { AppContext } from "../../context/AppContext";
+import { AppContext } from "../../context";
+import { getOpenMeteoApi } from "../../api/open-meteo";
 
 interface Props {
   class: string;
@@ -22,14 +23,25 @@ export const Settings: Component<Props> = (props) => {
       [e.currentTarget.name]: e.currentTarget.value,
     });
 
-    queryClient.prefetchQuery([
-      "open-meteo",
+    queryClient.prefetchQuery(
+      [
+        "open-meteo",
+        {
+          lat: state.location.lat,
+          lon: state.location.lon,
+          settings: state.settings,
+        },
+      ],
+      () =>
+        getOpenMeteoApi({
+          lat: state.location.lat,
+          lon: state.location.lon,
+          settings: state.settings,
+        }),
       {
-        lat: state.location.lat,
-        lon: state.location.lon,
-        settings: state.settings,
-      },
-    ]);
+        staleTime: 1000 * 60 * 60,
+      }
+    );
   };
 
   return (

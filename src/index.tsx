@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/solid-query";
 
 import "./index.css";
 import App from "./App";
-import { AppContextProvider } from "./context/AppContextProvider";
+import { AppContextProvider } from "./context";
 
 const root = document.getElementById("root");
 

@@ -1,17 +1,11 @@
+import { Component, For, Match, Switch, useContext } from "solid-js";
 import { useLocation } from "@solidjs/router";
-import {
-  Component,
-  createEffect,
-  For,
-  Match,
-  Switch,
-  useContext,
-} from "solid-js";
-import { mapboxProvider } from "../../api/mapbox/mapboxProvider";
-import { LoadingSpiner } from "./LoadingSpiner";
-import { Feature } from "../../interfaces/Mapbox";
-import { AppContext } from "../../context/AppContext";
 import { debounce } from "@solid-primitives/scheduled";
+
+import { LoadingSpiner } from "./";
+import { AppContext } from "../../context";
+import { mapboxProvider } from "../../api/mapbox";
+import { Feature } from "../../interfaces";
 
 export const SearchCity: Component = () => {
   const location = useLocation();
@@ -60,7 +54,7 @@ export const SearchCity: Component = () => {
         id="search-city"
         placeholder="Search for cities"
         autocomplete="off"
-        class="block w-full rounded-lg border border-slate-300 bg-slate-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 "
+        class="block w-full rounded-lg border border-slate-300 bg-slate-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
       />
 
       <div class="absolute top-full z-50 w-full rounded-b-lg bg-slate-700">

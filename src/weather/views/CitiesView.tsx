@@ -1,8 +1,10 @@
 import { Component } from "solid-js";
-import { Cities } from "../components/Cities";
-import { DayForecast } from "../components/DayForecast";
-import { TodayForecast } from "../components/TodayForecast";
-import { TodayWeather } from "../components/TodayWeather";
+import {
+  DayForecast,
+  TodayForecast,
+  TodayWeather,
+  Cities,
+} from "../components";
 
 export const CitiesView: Component = () => {
   return (

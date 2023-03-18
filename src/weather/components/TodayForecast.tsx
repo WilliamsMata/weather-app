@@ -6,9 +6,8 @@ import {
   createSignal,
   createEffect,
 } from "solid-js";
-import { TodayForecastItem } from "./TodayForecastItem";
-import { openMeteoProvider } from "../../api/open-meteo/openMeteoProvider";
-import { LoadingSpiner } from "./LoadingSpiner";
+import { TodayForecastItem, LoadingSpiner } from "./";
+import { openMeteoProvider } from "../../api/open-meteo";
 
 interface Props {
   class?: string;

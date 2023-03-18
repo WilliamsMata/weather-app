@@ -1,17 +1,10 @@
-import {
-  Component,
-  createEffect,
-  Match,
-  onMount,
-  Switch,
-  useContext,
-} from "solid-js";
-import { AppRouter } from "./router/AppRouter";
-import { ipApiProvider } from "./api/ip-api/ipApiProvider";
-import { AppContext } from "./context/AppContext";
+import { Component, Match, onMount, Switch, useContext } from "solid-js";
+import AppRouter from "./router/AppRouter";
+import { AppContext } from "./context";
+import { ipApiProvider } from "./api/ip-api";
 
 const App: Component = () => {
-  const [state, { setSettings }] = useContext(AppContext);
+  const [, { setSettings }] = useContext(AppContext);
 
   onMount(() => {
     /* SETTINGS */
@@ -26,7 +19,7 @@ const App: Component = () => {
   return (
     <Switch>
       <Match when={ipWhoApiQuery.isLoading}>
-        <div class="flex min-h-screen items-center justify-center">
+        <div class="flex min-h-screen items-center">
           <span class="loader" />
         </div>
       </Match>

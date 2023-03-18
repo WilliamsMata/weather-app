@@ -6,10 +6,10 @@ import {
   Switch,
   Match,
 } from "solid-js";
-import { DayForecastItem } from "./DayForecastItem";
-import { openMeteoProvider } from "../../api/open-meteo/openMeteoProvider";
-import { LoadingSpiner } from "./LoadingSpiner";
-import { getNextDays } from "../../helpers/getNextDays";
+
+import { DayForecastItem, LoadingSpiner } from "./";
+import { openMeteoProvider } from "../../api/open-meteo";
+import { getNextDays } from "../../helpers";
 
 interface Props {
   class: string;

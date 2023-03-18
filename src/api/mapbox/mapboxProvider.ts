@@ -1,8 +1,9 @@
-import { Feature, Mapbox } from "../../interfaces/Mapbox";
-import { mapboxApi } from "./mapboxApi";
-import { createQuery } from "@tanstack/solid-query";
 import { useContext } from "solid-js";
-import { AppContext } from "../../context/AppContext";
+import { createQuery } from "@tanstack/solid-query";
+
+import { mapboxApi } from "./";
+import { AppContext } from "../../context";
+import { Feature, Mapbox } from "../../interfaces";
 
 export const getMapboxApi = async (city: string): Promise<Feature[]> => {
   const { data } = await mapboxApi.get<Mapbox>(`/${city}.json`);

@@ -1,5 +1,5 @@
 import { Component } from "solid-js";
-import { Settings } from "../components/Settings";
+import { Settings } from "../components";
 
 export const SettingsView: Component = () => {
   return (

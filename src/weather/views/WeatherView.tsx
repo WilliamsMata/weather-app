@@ -1,8 +1,10 @@
 import { Component } from "solid-js";
-import { AirCondition } from "../components/AirCondition";
-import { DayForecast } from "../components/DayForecast";
-import { TodayForecast } from "../components/TodayForecast";
-import { TodayWeather } from "../components/TodayWeather";
+import {
+  AirCondition,
+  DayForecast,
+  TodayForecast,
+  TodayWeather,
+} from "../components";
 
 export const WeatherView: Component = () => {
   return (

@@ -1,6 +1,7 @@
 import { Component, JSX } from "solid-js";
 import { createStore } from "solid-js/store";
-import { AppContextMethods, AppContextProps, AppContext } from "./AppContext";
+
+import { AppContextMethods, AppContextProps, AppContext } from "./";
 
 interface Props {
   children: JSX.Element | JSX.Element[];

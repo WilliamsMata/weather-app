@@ -1,9 +1,9 @@
 import { createQuery } from "@tanstack/solid-query";
 import { createSignal, useContext } from "solid-js";
-import { jsonIpApi } from "./jsonIpApi";
-import { IPWho, JSONIP } from "../../interfaces/IpApi";
-import { ipWhoApi } from "./ipWhoApi";
-import { AppContext } from "../../context/AppContext";
+
+import { jsonIpApi, ipWhoApi } from "./";
+import { IPWho, JSONIP } from "../../interfaces";
+import { AppContext } from "../../context";
 
 const getJsonIpApi = async (): Promise<JSONIP> => {
   try {

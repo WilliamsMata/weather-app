@@ -1,9 +1,9 @@
-import { createQuery } from "@tanstack/solid-query";
-import { OpenMeteo } from "../../interfaces/OpenMeteo";
-import { openMeteoApi } from "./openMeteoApi";
-import { Settings } from "../../interfaces/Settings";
 import { useContext } from "solid-js";
-import { AppContext } from "../../context/AppContext";
+import { createQuery } from "@tanstack/solid-query";
+
+import { openMeteoApi } from "./";
+import { OpenMeteo, Settings } from "../../interfaces";
+import { AppContext } from "../../context";
 
 interface Props {
   lat: number;
@@ -11,7 +11,7 @@ interface Props {
   settings: Settings;
 }
 
-const getOpenMeteoApi = async ({
+export const getOpenMeteoApi = async ({
   lat,
   lon,
   settings,

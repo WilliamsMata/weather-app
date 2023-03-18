@@ -4,7 +4,7 @@ import { Routes, Route, Navigate } from "@solidjs/router";
 import AppLayout from "../weather/layout/AppLayout";
 import { CitiesView, SettingsView, WeatherView } from "../weather/views";
 
-export const AppRouter: Component = () => {
+const AppRouter: Component = () => {
   return (
     <Routes>
       <Route path={"/"} component={AppLayout}>
@@ -17,3 +17,5 @@ export const AppRouter: Component = () => {
     </Routes>
   );
 };
+
+export default AppRouter;

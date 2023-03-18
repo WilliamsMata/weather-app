@@ -1,7 +1,7 @@
 import { Component, createMemo, For } from "solid-js";
 import { A } from "@solidjs/router";
 
-import { NavbarIcon } from "./NavbarIcon";
+import { NavbarIcon } from "./";
 import umbrella from "../../assets/umbrella.svg";
 import sunCloudy from "../../assets/sun-cloudy.svg";
 import menu from "../../assets/menu.svg";

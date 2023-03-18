@@ -1,5 +1,5 @@
 import { Component, For, createSignal } from "solid-js";
-import { CitiesItem } from "./CitiesItem";
+import { CitiesItem } from "./";
 
 interface Props {
   class: string;

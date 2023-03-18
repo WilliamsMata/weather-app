@@ -1,5 +1,5 @@
 import { Component } from "solid-js";
-import { GetWeatherIcon } from "./GetWeatherIcon";
+import { GetWeatherIcon } from "./";
 
 interface Props {
   weatherCode: number;

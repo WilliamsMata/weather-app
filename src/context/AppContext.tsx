@@ -1,12 +1,5 @@
-import {
-  createContext,
-  Accessor,
-  Setter,
-  useContext,
-  createSignal,
-} from "solid-js";
-import { Location } from "../interfaces/Location";
-import { Settings } from "../interfaces/Settings";
+import { createContext } from "solid-js";
+import { Location, Settings } from "../interfaces";
 
 export type AppContextProps = {
   settings: Settings;
