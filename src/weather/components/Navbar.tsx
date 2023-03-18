@@ -5,6 +5,7 @@ import { NavbarIcon } from "./";
 import umbrella from "../../assets/umbrella.svg";
 import sunCloudy from "../../assets/sun-cloudy.svg";
 import menu from "../../assets/menu.svg";
+import map from "../../assets/map.svg";
 import settings from "../../assets/settings.svg";
 
 interface Options {
@@ -25,6 +26,11 @@ const navbarOptions: Options[] = [
     path: "/cities",
   },
   {
+    icon: map,
+    text: "Map",
+    path: "/map",
+  },
+  {
     icon: settings,
     text: "Settings",
     path: "/settings",
@@ -42,7 +48,7 @@ export const Navbar: Component = () => {
         <div class="flex items-center justify-center md:mt-12 md:flex-col md:gap-4">
           <For each={navbarOptions}>
             {(opt) => (
-              <A href={opt.path} class="w-20 md:w-full">
+              <A href={opt.path} class="w-[4.5rem] md:w-full">
                 <NavbarIcon icon={opt.icon} text={opt.text} ref={opt.text} />
               </A>
             )}

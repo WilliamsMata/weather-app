@@ -24,7 +24,7 @@ export const WeatherView: Component = () => {
       <AirCondition class="col-span-12 row-span-2 h-full w-full rounded-xl bg-slate-800 p-4 md:col-span-8" />
 
       <DayForecast
-        class="col-span-12 row-span-4 row-start-7 rounded-xl bg-slate-800 p-4 md:col-span-4 md:col-start-9 md:row-span-6 md:row-start-1"
+        class="col-span-12 row-span-4 row-start-7 mb-2 rounded-xl bg-slate-800 p-4 md:col-span-4 md:col-start-9 md:row-span-6 md:row-start-1 md:mb-0"
         days={7}
       />
     </section>
