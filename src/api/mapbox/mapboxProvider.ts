@@ -7,7 +7,7 @@ import { Feature, Mapbox } from "../../interfaces";
 
 export const getMapboxApi = async (city: string): Promise<Feature[]> => {
   const { data } = await mapboxApi.get<Mapbox>(`/${city}.json`);
-  console.log(data.features);
+  // console.log(data.features);
   return data.features;
 };
 

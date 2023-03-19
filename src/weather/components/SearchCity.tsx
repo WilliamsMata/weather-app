@@ -39,8 +39,6 @@ export const SearchCity: Component = () => {
     addCityToHistory();
 
     setSearch("");
-
-    console.log(state.history);
   };
 
   return (
