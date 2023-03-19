@@ -1,11 +1,40 @@
+# Weather App
+
+**Try it here** -> https://my-weather-app-wm.netlify.app/
+
+### Features
+
+- [x] Search by cities
+
+- [x] Today's forecast
+
+- [x] 7-day forecast
+
+- [x] Search history
+
+- [x] Air condition
+
+- [x] Windy map
+
+- [x] Settings options
+
+### Tech Stack
+
+- [SolidJS](https://www.solidjs.com/)
+
+- [Solid Router](https://github.com/solidjs/solid-router)
+
+- [Tailwind CSS](https://tailwindcss.com/)
+
+- [Axios](https://axios-http.com/)
+- [TanStack Query](https://tanstack.com/query/latest)
+
+- [Vite](https://vitejs.dev/)
+
 ## Usage
 
-Those templates dependencies are maintained via [pnpm](https://pnpm.io) via `pnpm up -Lri`.
-
-This is the reason you see a `pnpm-lock.yaml`. That being said, any package manager will work. This file can be safely be removed once you clone a template.
-
 ```bash
-$ npm install # or pnpm install or yarn install
+$ yarn install # or pnpm install or npm install
 ```
 
 ### Learn more on the [Solid Website](https://solidjs.com) and come chat with us on our [Discord](https://discord.com/invite/solidjs)
