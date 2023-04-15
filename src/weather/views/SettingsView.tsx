@@ -1,6 +1,5 @@
 import { Component } from "solid-js";
-import { UnitsSettings } from "../components";
-import { GeneralSettings } from "../components/GeneralSettings";
+import { UnitsSettings, GeneralSettings } from "../components";
 
 export const SettingsView: Component = () => {
   return (

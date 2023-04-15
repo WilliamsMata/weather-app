@@ -1,7 +1,5 @@
-import { useQueryClient } from "@tanstack/solid-query";
 import { Component, useContext } from "solid-js";
 import { AppContext } from "../../context";
-import { getOpenMeteoApi } from "../../api/open-meteo";
 
 interface Props {
   class: string;
