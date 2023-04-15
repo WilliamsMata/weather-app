@@ -2,6 +2,7 @@ import { Component, JSX } from "solid-js";
 import { createStore } from "solid-js/store";
 
 import { AppContextMethods, AppContextProps, AppContext } from "./";
+import { Location, Settings } from "../interfaces";
 
 interface Props {
   children: JSX.Element | JSX.Element[];
@@ -30,7 +31,7 @@ export const AppContextProvider: Component<Props> = (props) => {
   const store: [AppContextProps, AppContextMethods] = [
     state,
     {
-      setSettings(payload) {
+      setSettings(payload: Settings) {
         setState("settings", payload);
 
         localStorage.setItem(
@@ -57,10 +58,10 @@ export const AppContextProvider: Component<Props> = (props) => {
           })
         );
       },
-      setLocation(payload) {
+      setLocation(payload: Location) {
         setState("location", payload);
       },
-      setSearch(payload) {
+      setSearch(payload: string) {
         setState("search", payload);
       },
       addCityToHistory() {
