@@ -2,10 +2,10 @@ import { Component, For, Match, Switch, useContext } from "solid-js";
 import { useLocation } from "@solidjs/router";
 import { debounce } from "@solid-primitives/scheduled";
 
-import { LoadingSpiner } from "./";
-import { AppContext } from "../../context";
-import { mapboxProvider } from "../../api/mapbox";
-import { Feature } from "../../interfaces";
+import { LoadingSpiner } from "..";
+import { AppContext } from "../../../context";
+import { mapboxProvider } from "../../../api/mapbox";
+import { Feature } from "../../../interfaces";
 
 export const SearchCity: Component = () => {
   const location = useLocation();

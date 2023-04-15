@@ -7,9 +7,9 @@ import {
   Match,
 } from "solid-js";
 
-import { DayForecastItem, LoadingSpiner } from "./";
-import { openMeteoProvider } from "../../api/open-meteo";
-import { getNextDays } from "../../helpers";
+import { DayForecastItem, LoadingSpiner } from "..";
+import { openMeteoProvider } from "../../../api/open-meteo";
+import { getNextDays } from "../../../helpers";
 
 interface Props {
   class: string;

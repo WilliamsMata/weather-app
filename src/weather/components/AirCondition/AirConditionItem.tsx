@@ -1,5 +1,5 @@
 import { Component } from "solid-js";
-import { AirConditionData } from "./";
+import { AirConditionData } from "..";
 
 export const AirConditionItem: Component<AirConditionData> = (props) => {
   return (

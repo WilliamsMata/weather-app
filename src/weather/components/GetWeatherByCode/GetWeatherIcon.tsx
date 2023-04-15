@@ -1,13 +1,13 @@
 import { Component, Switch, Match } from "solid-js";
 
-import clearSkyDay from "../../assets/weather-icons/clear-sky-day.svg";
-import mainlyClearDay from "../../assets/weather-icons/mainly-clear-day.svg";
-import partlyCloudyDay from "../../assets/weather-icons/partly-cloudy-day.svg";
-import overcast from "../../assets/weather-icons/overcast.svg";
-import drizzleDay from "../../assets/weather-icons/drizzle-day.svg";
-import rain from "../../assets/weather-icons/rain.svg";
-import thunderstorm from "../../assets/weather-icons/thunderstorm.svg";
-import heavyRain from "../../assets/weather-icons/heavy-rain.svg";
+import clearSkyDay from "../../../assets/weather-icons/clear-sky-day.svg";
+import mainlyClearDay from "../../../assets/weather-icons/mainly-clear-day.svg";
+import partlyCloudyDay from "../../../assets/weather-icons/partly-cloudy-day.svg";
+import overcast from "../../../assets/weather-icons/overcast.svg";
+import drizzleDay from "../../../assets/weather-icons/drizzle-day.svg";
+import rain from "../../../assets/weather-icons/rain.svg";
+import thunderstorm from "../../../assets/weather-icons/thunderstorm.svg";
+import heavyRain from "../../../assets/weather-icons/heavy-rain.svg";
 
 interface Props {
   weatherCode: number;

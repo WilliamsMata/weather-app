@@ -1,5 +1,5 @@
 import { Component } from "solid-js";
-import { DayForecastData, GetWeatherIcon, GetWeatherConditionText } from "./";
+import { DayForecastData, GetWeatherIcon, GetWeatherConditionText } from "..";
 
 export const DayForecastItem: Component<DayForecastData> = (props) => {
   return (

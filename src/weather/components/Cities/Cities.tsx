@@ -5,8 +5,8 @@ import {
   useContext,
   createEffect,
 } from "solid-js";
-import { CitiesItem } from "./";
-import { AppContext } from "../../context";
+import { CitiesItem } from "..";
+import { AppContext } from "../../../context";
 
 interface Props {
   class: string;

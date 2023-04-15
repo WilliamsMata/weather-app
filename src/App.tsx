@@ -2,7 +2,7 @@ import { Component, Match, onMount, Switch, useContext } from "solid-js";
 import AppRouter from "./router/AppRouter";
 import { AppContext } from "./context";
 import { ipApiProvider } from "./api/ip-api";
-import { openMeteoProvider } from "./api/open-meteo/openMeteoProvider";
+import { openMeteoProvider } from "./api/open-meteo";
 import { ErrorView } from "./weather/views";
 
 const App: Component = () => {

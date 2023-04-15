@@ -8,14 +8,14 @@ import {
   useContext,
 } from "solid-js";
 
-import realFeelIcon from "../../assets/real-feel.svg";
-import windIcon from "../../assets/wind.svg";
-import waterDropIcon from "../../assets/water-drop.svg";
-import pressureIcon from "../../assets/pressure.svg";
+import realFeelIcon from "../../../assets/real-feel.svg";
+import windIcon from "../../../assets/wind.svg";
+import waterDropIcon from "../../../assets/water-drop.svg";
+import pressureIcon from "../../../assets/pressure.svg";
 
-import { AirConditionItem, LoadingSpiner } from "./";
-import { openMeteoProvider } from "../../api/open-meteo";
-import { AppContext } from "../../context";
+import { AirConditionItem, LoadingSpiner } from "..";
+import { openMeteoProvider } from "../../../api/open-meteo";
+import { AppContext } from "../../../context";
 
 interface Props {
   class: string;

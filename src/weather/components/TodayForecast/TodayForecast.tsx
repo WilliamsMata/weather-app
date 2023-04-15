@@ -7,9 +7,9 @@ import {
   createEffect,
   useContext,
 } from "solid-js";
-import { TodayForecastItem, LoadingSpiner } from "./";
-import { openMeteoProvider } from "../../api/open-meteo";
-import { AppContext } from "../../context";
+import { TodayForecastItem, LoadingSpiner } from "..";
+import { openMeteoProvider } from "../../../api/open-meteo";
+import { AppContext } from "../../../context";
 
 interface Props {
   class?: string;

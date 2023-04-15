@@ -1,5 +1,5 @@
 import { Component, useContext } from "solid-js";
-import { AppContext } from "../../context";
+import { AppContext } from "../../../context";
 
 interface Props {
   class: string;

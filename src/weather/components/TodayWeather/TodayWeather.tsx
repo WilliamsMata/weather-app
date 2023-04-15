@@ -1,7 +1,8 @@
 import { Component, Match, Switch, useContext } from "solid-js";
-import { GetWeatherIcon, LoadingSpiner } from "./";
-import { AppContext } from "../../context";
-import { openMeteoProvider } from "../../api/open-meteo";
+import { GetWeatherIcon, LoadingSpiner } from "..";
+import { AppContext } from "../../../context";
+import { openMeteoProvider } from "../../../api/open-meteo";
+
 interface Props {
   class?: string;
   heightIcon: number;

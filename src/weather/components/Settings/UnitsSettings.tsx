@@ -1,9 +1,9 @@
 import { Component, useContext } from "solid-js";
 import { useQueryClient } from "@tanstack/solid-query";
 
-import { TemperatureSettings, WindSettings } from "./";
-import { AppContext } from "../../context";
-import { handleSettingsChange } from "../../utils";
+import { TemperatureSettings, WindSettings } from "..";
+import { AppContext } from "../../../context";
+import { handleSettingsChange } from "../../../utils";
 
 interface Props {
   class: string;

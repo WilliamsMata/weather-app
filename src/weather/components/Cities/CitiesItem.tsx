@@ -1,9 +1,9 @@
 import { Component, Switch, useContext, Match } from "solid-js";
-import { GetWeatherIcon } from "./";
-import { AppContext } from "../../context/AppContext";
+import { GetWeatherIcon } from "..";
+import { AppContext } from "../../../context/AppContext";
 import { createQuery } from "@tanstack/solid-query";
-import { getOpenMeteoApi } from "../../api/open-meteo/openMeteoProvider";
-import { LoadingSpiner } from "./LoadingSpiner";
+import { getOpenMeteoApi } from "../../../api/open-meteo/openMeteoProvider";
+import { LoadingSpiner } from "../";
 
 interface Props {
   id: string;
