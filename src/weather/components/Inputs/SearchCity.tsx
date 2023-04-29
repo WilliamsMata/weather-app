@@ -1,71 +1,16 @@
-import { Component, For, Match, Switch, useContext } from "solid-js";
-import { useLocation } from "@solidjs/router";
-import { debounce } from "@solid-primitives/scheduled";
+import { Component, For, Match, Switch } from "solid-js";
 
-import { LoadingSpiner } from "..";
-import { AppContext } from "../../../context";
-import { mapboxProvider } from "../../../api/mapbox";
-import { Feature } from "../../../interfaces";
-import { useQueryClient } from "@tanstack/solid-query";
-import { getOpenMeteoApi } from "../../../api/open-meteo";
+import { LoadingSpiner, useSearchCity } from "..";
 
 export const SearchCity: Component = () => {
-  const location = useLocation();
-  const [state, { setSearch, setLocation, addCityToHistory }] =
-    useContext(AppContext);
-
-  const mapboxQuery = mapboxProvider();
-
-  const queryClient = useQueryClient();
-
-  const delayedSearch = debounce((value: string) => {
-    setSearch(value);
-  }, 500);
-
-  const handleInputChange = (
-    e: InputEvent & {
-      currentTarget: HTMLInputElement;
-      target: Element;
-    }
-  ) => {
-    delayedSearch(e.currentTarget.value);
-  };
-
-  const handleCityClick = (data: Feature) => {
-    setLocation({
-      ...state.location,
-      id: data.id,
-      lat: data.center[1],
-      lon: data.center[0],
-      city: data.text,
-    });
-
-    addCityToHistory();
-
-    setSearch("");
-  };
-
-  const handleMouseEnterInCitySearch = (data: Feature) => {
-    queryClient.prefetchQuery(
-      [
-        "open-meteo",
-        {
-          lat: data.center[1],
-          lon: data.center[0],
-          settings: state.settings,
-        },
-      ],
-      () =>
-        getOpenMeteoApi({
-          lat: data.center[1],
-          lon: data.center[0],
-          settings: state.settings,
-        }),
-      {
-        staleTime: 1000 * 60 * 60,
-      }
-    );
-  };
+  const {
+    state,
+    location,
+    mapboxQuery,
+    handleInputChange,
+    handleCityClick,
+    handleMouseEnterInCitySearch,
+  } = useSearchCity();
 
   return (
     <form

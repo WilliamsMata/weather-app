@@ -1,25 +1,12 @@
-import {
-  Component,
-  For,
-  createSignal,
-  useContext,
-  createEffect,
-} from "solid-js";
-import { CitiesItem } from "..";
-import { AppContext } from "../../../context";
+import { Component, For } from "solid-js";
+import { CitiesItem, useCities } from "..";
 
 interface Props {
   class: string;
 }
 
 export const Cities: Component<Props> = (props) => {
-  const [state] = useContext(AppContext);
-
-  const [activeCity, setActiveCity] = createSignal<string>(state.history[0].id);
-
-  createEffect(() => {
-    setActiveCity(state.location.id);
-  });
+  const { state, activeCity, setActiveCity } = useCities();
 
   return (
     <section class={props.class}>

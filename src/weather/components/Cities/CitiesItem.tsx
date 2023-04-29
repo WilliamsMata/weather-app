@@ -1,11 +1,7 @@
-import { Component, Switch, useContext, Match } from "solid-js";
-import { GetWeatherIcon } from "..";
-import { AppContext } from "../../../context/AppContext";
-import { createQuery } from "@tanstack/solid-query";
-import { getOpenMeteoApi } from "../../../api/open-meteo/openMeteoProvider";
-import { LoadingSpiner } from "../";
+import { Component, Switch, Match } from "solid-js";
+import { GetWeatherIcon, useCities, LoadingSpiner } from "..";
 
-interface Props {
+export interface CitiesItemProps {
   id: string;
   city: string;
   lat: number;
@@ -14,68 +10,31 @@ interface Props {
   setActiveCity: (id: string) => void;
 }
 
-export const CitiesItem: Component<Props> = (props) => {
-  const [state, { setLocation }] = useContext(AppContext);
-
-  const hour = new Date().getHours();
-
-  const openMeteoQuery = createQuery(
-    () => [
-      "open-meteo",
-      {
-        lat: props.lat,
-        lon: props.lon,
-        settings: state.settings,
-      },
-    ],
-    () =>
-      getOpenMeteoApi({
-        lat: props.lat,
-        lon: props.lon,
-        settings: state.settings,
-      }),
-    {
-      staleTime: 1000 * 60 * 60,
-      get enabled() {
-        return state.location.isOk;
-      },
-    }
-  );
-
-  const handleCityClick = () => {
-    props.setActiveCity(props.id);
-
-    setLocation({
-      ...state.location,
-      id: props.id,
-      lat: props.lat,
-      lon: props.lon,
-      city: props.city,
-    });
-  };
+export const CitiesItem: Component<CitiesItemProps> = (props) => {
+  const { state, openMeteoQuery, hour, handleCityClick } = useCities(props);
 
   return (
     <Switch>
-      <Match when={openMeteoQuery.isLoading}>
+      <Match when={openMeteoQuery!.isLoading}>
         <div class="flex min-h-[7rem] items-center justify-center">
           <LoadingSpiner />
         </div>
       </Match>
 
-      <Match when={openMeteoQuery.isSuccess}>
+      <Match when={openMeteoQuery!.isSuccess}>
         <div
           class={`flex cursor-pointer items-center justify-between rounded-xl px-4 py-4 ${
             props.activeCity !== props.id
               ? "bg-slate-800"
               : "outline outline-blue-900"
           }`}
-          onClick={() => handleCityClick()}
+          onClick={() => handleCityClick!()}
         >
           <div class="flex items-center justify-center">
             <GetWeatherIcon
               height={5}
               width={5}
-              weatherCode={openMeteoQuery.data!.hourly.weathercode[hour]}
+              weatherCode={openMeteoQuery!.data!.hourly.weathercode[hour!]}
             />
           </div>
 
@@ -84,7 +43,7 @@ export const CitiesItem: Component<Props> = (props) => {
           </h2>
 
           <h2 class="text-4xl md:text-2xl xl:text-4xl">
-            {openMeteoQuery.data?.hourly.temperature_2m[hour]}°
+            {openMeteoQuery!.data?.hourly.temperature_2m[hour!]}°
             {state.settings.temperature === "Celsius" ? "C" : "F"}
           </h2>
         </div>
