@@ -6,6 +6,8 @@ import { LoadingSpiner } from "..";
 import { AppContext } from "../../../context";
 import { mapboxProvider } from "../../../api/mapbox";
 import { Feature } from "../../../interfaces";
+import { useQueryClient } from "@tanstack/solid-query";
+import { getOpenMeteoApi } from "../../../api/open-meteo";
 
 export const SearchCity: Component = () => {
   const location = useLocation();
@@ -13,6 +15,8 @@ export const SearchCity: Component = () => {
     useContext(AppContext);
 
   const mapboxQuery = mapboxProvider();
+
+  const queryClient = useQueryClient();
 
   const delayedSearch = debounce((value: string) => {
     setSearch(value);
@@ -39,6 +43,28 @@ export const SearchCity: Component = () => {
     addCityToHistory();
 
     setSearch("");
+  };
+
+  const handleMouseEnterInCitySearch = (data: Feature) => {
+    queryClient.prefetchQuery(
+      [
+        "open-meteo",
+        {
+          lat: data.center[1],
+          lon: data.center[0],
+          settings: state.settings,
+        },
+      ],
+      () =>
+        getOpenMeteoApi({
+          lat: data.center[1],
+          lon: data.center[0],
+          settings: state.settings,
+        }),
+      {
+        staleTime: 1000 * 60 * 60,
+      }
+    );
   };
 
   return (
@@ -77,6 +103,7 @@ export const SearchCity: Component = () => {
                 <div
                   class="cursor-pointer rounded-lg p-4 hover:bg-slate-800"
                   onclick={(e) => handleCityClick(data)}
+                  onMouseEnter={(e) => handleMouseEnterInCitySearch(data)}
                 >
                   {data.place_name_en}
                 </div>
