@@ -1,5 +1,5 @@
 import { Component, Match, Switch, useContext } from "solid-js";
-import { GetWeatherIcon, LoadingSpiner } from "..";
+import { GetWeatherConditionText, GetWeatherIcon, LoadingSpiner } from "..";
 import { AppContext } from "../../../context";
 import { openMeteoProvider } from "../../../api/open-meteo";
 
@@ -34,6 +34,11 @@ export const TodayWeather: Component<Props> = (props) => {
               >
                 {state.location.city}
               </h1>
+              <h4 class="my-2">
+                <GetWeatherConditionText
+                  weatherCode={openMeteoQuery.data!.hourly.weathercode[hour]}
+                />
+              </h4>
               <p class="my-2 text-xs text-slate-400 md:text-sm">
                 Chance of rain:{" "}
                 {openMeteoQuery.data?.hourly.precipitation_probability[hour]}%
