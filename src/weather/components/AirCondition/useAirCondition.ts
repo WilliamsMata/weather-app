@@ -18,34 +18,44 @@ export const useAirCondition = () => {
 
   const openMeteoQuery = openMeteoProvider();
 
-  const hour = new Date().getHours();
+  const [currentHour, setCurrentHour] = createSignal<number>(0);
 
   const [airConditionData, setAirConditionData] = createSignal<
     AirConditionData[]
   >([]);
 
   createEffect(() => {
-    if (openMeteoQuery.isSuccess) {
+    if (openMeteoQuery.isSuccess && openMeteoQuery.data) {
+      const hour = new Date(
+        openMeteoQuery.data.current_weather.time
+      ).getHours();
+
+      setCurrentHour(hour);
+
       setAirConditionData([
         {
           title: "Real Feel",
           icon: realFeelIcon,
-          data: `${openMeteoQuery.data.hourly.apparent_temperature[hour]}°`,
+          data: `${
+            openMeteoQuery.data.hourly.apparent_temperature[currentHour()]
+          }°`,
         },
         {
           title: "Wind",
           icon: windIcon,
-          data: `${openMeteoQuery.data.hourly.windspeed_10m[hour]} ${state.settings.wind}`,
+          data: `${openMeteoQuery.data.current_weather.windspeed} ${state.settings.wind}`,
         },
         {
           title: "Chance of rain",
           icon: waterDropIcon,
-          data: `${openMeteoQuery.data.hourly.precipitation_probability[hour]}%`,
+          data: `${
+            openMeteoQuery.data.hourly.precipitation_probability[currentHour()]
+          }%`,
         },
         {
           title: "Pressure",
           icon: pressureIcon,
-          data: `${openMeteoQuery.data.hourly.pressure_msl[hour]} hPa`,
+          data: `${openMeteoQuery.data.hourly.pressure_msl[currentHour()]} hPa`,
         },
       ]);
     }
