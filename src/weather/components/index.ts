@@ -7,4 +7,4 @@ export * from "./Navbar";
 export * from "./Inputs";
 export * from "./Settings";
 export * from "./TodayForecast";
-export * from "./TodayWeather";
+export * from "./CurrentWeather";

@@ -25,10 +25,11 @@ export const getOpenMeteoApi = async ({
       hourly:
         "temperature_2m,apparent_temperature,precipitation_probability,weathercode,pressure_msl,windspeed_10m",
       daily: "weathercode,temperature_2m_max,temperature_2m_min",
-      timezone: "America/New_York",
+      timezone: "auto",
+      current_weather: true,
     },
   });
-  //console.log(data);
+  // console.log(data);
   return data;
 };
 

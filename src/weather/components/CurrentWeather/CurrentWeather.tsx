@@ -10,7 +10,7 @@ interface Props {
   bigFont: boolean;
 }
 
-export const TodayWeather: Component<Props> = (props) => {
+export const CurrentWeather: Component<Props> = (props) => {
   const [state] = useContext(AppContext);
 
   const openMeteoQuery = openMeteoProvider();
@@ -36,7 +36,7 @@ export const TodayWeather: Component<Props> = (props) => {
               </h1>
               <h4 class="my-2">
                 <GetWeatherConditionText
-                  weatherCode={openMeteoQuery.data!.hourly.weathercode[hour]}
+                  weatherCode={openMeteoQuery.data!.current_weather.weathercode}
                 />
               </h4>
               <p class="my-2 text-xs text-slate-400 md:text-sm">
@@ -45,13 +45,13 @@ export const TodayWeather: Component<Props> = (props) => {
               </p>
             </div>
             <h2 class={`text-4xl font-bold ${props.bigFont ? "text-5xl" : ""}`}>
-              {openMeteoQuery.data?.hourly.temperature_2m[hour]}
+              {openMeteoQuery.data?.current_weather.temperature}
               {openMeteoQuery.data?.hourly_units.temperature_2m}
             </h2>
           </div>
 
           <GetWeatherIcon
-            weatherCode={openMeteoQuery.data!.hourly.weathercode[hour]}
+            weatherCode={openMeteoQuery.data!.current_weather.weathercode}
             height={props.heightIcon}
             width={props.widthIcon}
           />
