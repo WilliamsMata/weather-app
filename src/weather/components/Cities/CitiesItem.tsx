@@ -34,7 +34,7 @@ export const CitiesItem: Component<CitiesItemProps> = (props) => {
             <GetWeatherIcon
               height={5}
               width={5}
-              weatherCode={openMeteoQuery!.data!.hourly.weathercode[hour!]}
+              weatherCode={openMeteoQuery!.data!.current_weather.weathercode}
             />
           </div>
 
@@ -43,7 +43,7 @@ export const CitiesItem: Component<CitiesItemProps> = (props) => {
           </h2>
 
           <h2 class="text-4xl md:text-2xl xl:text-4xl">
-            {openMeteoQuery!.data?.hourly.temperature_2m[hour!]}°
+            {openMeteoQuery!.data?.current_weather.temperature}°
             {state.settings.temperature === "Celsius" ? "C" : "F"}
           </h2>
         </div>
